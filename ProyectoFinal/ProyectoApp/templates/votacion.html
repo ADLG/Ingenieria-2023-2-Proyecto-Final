@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <title>50amigos</title>
+</head>
+<body class="body-helados">
+
+    <header class="header-helados">
+        <div class="barra">
+            <div class="logo logo-helados">
+                <a href="{% url 'ProyectoApp:index' %}">50<span class="logo-especial-helados">Amigos</span></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="votacion">
+
+        <label for="nombre" class="label-votacion">Nombre</label>
+        <input type="text" placeholder="Tu nombre:" id="nombre">
+
+        <label for="sabores" class="label-votacion">Sabor de helado</label>
+        <select name="" id="sabores">
+            <option value="" class="opcion-sabor">-- Seleccionar --</option>
+            {% for helado in helados %}
+            <option value="{{helado.nombre}}" class="opcion-sabor">{{helado.nombre}}</option>
+            {% endfor %}
+        </select>
+
+        <button id="boton_votar">Agregar</button>
+    </div>
+
+    <div class="datos">
+        
+    </div>
+
+
+    <button id="agregar">+</button>
+
+    <button id="boton_terminar_votacion">Terminar votación</button>
+
+    
+
+    <script>
+
+
+        const divi = document.querySelector(".datos");
+        var div_votar = document.querySelector(".votacion");
+        var boton_agregar = document.querySelector("#agregar");
+        var boton = document.querySelector("#boton_votar");
+        var boton_terminar = document.querySelector("#boton_terminar_votacion");
+        var nombre_votante = document.querySelector("#nombre");
+        var selector = document.querySelector("select"); 
+        var opciones = document.querySelectorAll("option");
+        var arreglo = [];
+        var arreglo_cantidad = [];
+        var verdad = 0;
+
+        for (let index = 1; index < opciones.length; index++) {
+            arreglo_cantidad.push(0);
+            
+        }
+
+        function ventanaEmergente() {
+            div_votar.style.display = "block";
+        }
+
+        function cambiar() {
+            if(nombre_votante.value == "" || selector.value == "") {
+                window.alert("Rellene todos los campos");
+            } else {
+                for (let index = 0; index < arreglo_cantidad.length; index++) {
+                    if(selector.value == opciones[index + 1].value) {
+                        window.alert("Votaste por el sabor " + selector.value);
+                        arreglo_cantidad[index] = arreglo_cantidad[index] + 1;
+                        var p = document.createElement("p");
+                        var pTexto = document.createTextNode("Nombre: " + nombre_votante.value);
+                        p.appendChild(pTexto);
+                        divi.appendChild(p);
+
+                        p = document.createElement("p");
+                        pTexto = document.createTextNode("Sabor sleccionado: " + selector.value);
+                        p.appendChild(pTexto);
+                        divi.appendChild(p);
+
+                        div_votar.style.display = "none";
+                        selector.value = "";
+                        nombre_votante.value = "";
+                    }
+                
+                }
+            }
+
+        
+            for (let index = 0; index < arreglo_cantidad.length; index++) {
+                console.log(arreglo_cantidad[index]);
+            
+            }
+
+        
+        
+        }
+
+        function calcularGanador() {
+
+            for (let index = 0; index < arreglo_cantidad.length; index++) {
+                verdad = 0;
+                for (let i = 0 ; i < arreglo_cantidad.length; i++) {
+                    if(arreglo_cantidad[index] >= arreglo_cantidad[i]){
+                        verdad += 1;
+                    }
+                    
+                }
+
+                if (verdad == arreglo_cantidad.length) {
+                    window.alert("Ganó el sabor " + opciones[index+1].value);
+                    window.location = '{% url 'ProyectoApp:inicio' %}';
+                    break;
+                }
+                
+            }
+
+        }
+
+        boton.onclick = cambiar;
+
+        boton_terminar.onclick = calcularGanador;
+
+        boton_agregar.onclick = ventanaEmergente;
+
+    </script>
+</body>
+</html>

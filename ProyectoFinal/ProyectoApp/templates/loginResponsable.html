@@ -1,0 +1,38 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="indexi">
+     <div class="cuadro">
+      <form action="{% url 'CPL' %}" method="POST"> {% csrf_token %}
+        {{form | crispy}}
+      <p><p>   
+        <label for="UsuarioR">Usuario
+            <input type="text" id="userR1" name="userR1">
+        </label>
+        <br>
+        <br>
+        <label for="PassR">Contraseña
+            <input type="password" id="passR1" name="passR1">
+        </label>
+        <br><br>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+        <button type="submit" class="botonind">Iniciar Sesión</button>
+      </p></p>
+      </form> 
+     </div>
+    </div>
+</body>
+</html>

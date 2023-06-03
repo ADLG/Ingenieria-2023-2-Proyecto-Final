@@ -1,0 +1,75 @@
+{% load crispy_forms_tags %}
+  <div class="alert alert-primary" role="alert" style="background-color: #FDFF9A;">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="row" colspan="3" class="text-center">CARRITO</th>
+        </tr>
+        <tr>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">PRECIO</th>
+          <th scope="col">CANTIDAD</th>
+          <th scope="col">&nbsp&nbsp+&nbsp&nbsp|&nbsp&nbsp-&nbsp&nbsp</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% if request.session.carrito.items %}
+      {% for key, value in request.session.carrito.items %}
+        <tr>
+          <td>{{value.nombre}}</td>
+          {{value.precio}}
+          <td>{{value.precioAcumulado}}</td>
+          <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{value.cantidad}}</td>
+          <td>
+            <a href="{% url 'Add' value.platillos_id %}" class="badge btn btn-dark badge-dark">+</a>
+            <a href="{% url 'Sub' value.platillos_id %}" class="badge btn btn-dark badge-dark">-</a>
+          </td>
+        </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+          <td colspan="3">
+              <div class="alert alert-danger text-center"> Sin Platillos </div>
+          </td>
+      </tr>
+      {% endif %}
+        <tr>
+          <th scope="row">Total:</th>
+          <td colspan="2">$ {{total_carrito}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <div class="row text-center">
+        <div class="col-14"><a href="{% url 'CLS' %}" class="btn btn-danger">Limpiar</a></div>
+    </div>
+
+    </div>
+        <script>array = []</script>
+        <form action="{% url 'GRD' %}" method="POST">{% csrf_token %}
+            {% if request.session.carrito.items %}
+            {% for key, value in request.session.carrito.items %}
+
+                <input type="hidden" id="id_ticket" name="id_ticket" value="{{idti.id|add:1}}"/>
+                <input type="hidden" id="nombre" name="nombre" value="{{value.nombre}}"/>
+                <input type="hidden" id="precio" name="precio" value="{{total_carrito}}"/>
+                <input type="hidden" id="cantidad" name="cantidad" value="{{value.cantidad}}"/>
+                <script>
+                  nom = '{{value.nombre}}'
+                  pre = '{{value.precioAcumulado}}'
+                  can = '{{value.cantidad}}'
+                  plat = [nom,pre,can]
+                  array.push(plat);
+                </script>
+
+            {% endfor %}
+            {% endif %}
+                <input type="hidden" id="arreglo" name="arreglo" />
+                <script>
+                  // document.write(array);
+                  document.getElementById("arreglo").value = array;
+                </script>
+          <div class="row text-center">
+          <button type="submit" class="btn btn-success">Enviar a la cocina</button>
+          </div>
+          </form>

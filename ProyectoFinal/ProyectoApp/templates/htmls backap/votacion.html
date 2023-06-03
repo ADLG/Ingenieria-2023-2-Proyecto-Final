@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <title>50amigos</title>
+</head>
+<body>
+    <div class="inicio"><div class="sombra"><div class="barra"><div class="logo"></div></div></div></div>
+        <p><p>
+        <label for="txt1" id="l1">Name (4 to 8 characters):</label>
+        <input type="text" id="txt1" name="name" required minlength="4" maxlength="8" size="5">
+        <select name="select" id="s1" onChange="document.getElementById('selectedValue1').innerHTML = this.value;">
+        <option value="value1">Limón</option>
+        <option value="value2">Chocolate</option>
+        <option value="value3">Pistash</option>
+        </select>
+        <br><br>
+        <label for="txt2" id="l2">Name (4 to 8 characters):</label>
+        <input type="text" id="txt2" name="name" required minlength="4" maxlength="8" size="5">
+        <select name="select" id="s2" onChange="document.getElementById('selectedValue2').innerHTML = this.value;">
+        <option value="value1">Limón</option>
+        <option value="value2">Chocolate</option>
+        <option value="value3">Pistash</option>
+        </select>
+        <br><br>
+        <label for="txt3" id="l3">Name (4 to 8 characters):</label>
+        <input type="text" id="txt3" name="name" required minlength="4" maxlength="8" size="5">
+        <select name="select" id="s3" onChange="document.getElementById('selectedValue3').innerHTML = this.value;">
+        <option value="value1">Limón</option>
+        <option value="value2">Chocolate</option>
+        <option value="value3">Pistash</option>
+        </select>
+        <input type="button" class="btn btn-primary" id="btn1" value="Resultados">
+        <button class="btn btn-primary" onclick="muestraResultados()">11111</button>
+        <a class="botonind" href="/"><button type="submit" class="botonind">123</button></a>
+        <p class="outp" id="out1"></p>
+
+        <p><span id="selectedValue1"></span></p>
+        <p><span id="selectedValue2"></span></p>
+        <p><span id="selectedValue3"></span></p>
+
+        <script>
+        function muestraResultados()
+        {
+        array = [];
+        arrayR = [];
+
+        var e = document.getElementById("s1");var value = e.value;
+        var text = e.options[e.selectedIndex].text;array.push(text);
+        var e = document.getElementById("s2");var value = e.value;
+        var text = e.options[e.selectedIndex].text;array.push(text);
+        var e = document.getElementById("s3");var value = e.value;
+        var text = e.options[e.selectedIndex].text;array.push(text);
+
+        arrayR.push(getOccurrence(array,"Chocolate")+"Ch")
+        arrayR.push(getOccurrence(array,"Limón"))
+        arrayR.push(getOccurrence(array,"Pistash"))
+        // document.write("Aparece "+getOccurrence(array,"Value 3")+" veces");
+
+        document.write(arrayR+"<br/>");
+        document.write(arrayR.sort());
+        }
+
+        function getOccurrence(array, value)
+        {
+            var count = 0;
+            array.forEach((v) => (v === value && count++));
+            return count;
+        }
+        document.write(getOccurrence(array,"Value 3"));
+
+        </script>
+
+    </p></p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <title>50amigos</title>
+</head>
+<body>
+    <div class="indexi">
+    <div class="cuadro">
+      <form action="{% url 'RGM' %}" method="POST"> {% csrf_token %}
+        <div class="logo">
+            <a href="{% url 'ProyectoApp:inicioMesa' %}">50<span class="logo-especial">Amigos</span></a>
+        </div>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <div class="form-group">
+                <label for="txt1" id="l1">Mesa</label>
+                <input class="form-control" id="txt1" name="txt1" placeholder="Mesa">
+                <label for="txt2" id="l2">Número de Mesa</label>
+                <input class="form-control" id="txt2" name="txt2" placeholder="Número de Mesa">
+                <label for="txt3" id="l3">Contraseña</label>
+                <input type="password"class="form-control" id="txt3" name="txt3" placeholder="Contraseña">
+                <label for="txt4" id="l4">Ubicación</label>
+                <input class="form-control" id="txt4" name="txt4" placeholder="Ubicación">
+                <p><p></p></p>
+                <input type="hidden" id="idMes" name="idMes" value="{{idMes.id|add:1}}"/>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <button type="submit" class="btn btn-warning">Registrar</button>
+    <p><br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+            </div>
+      </form>
+    </div>
+    </div>
+</body>
+</html>

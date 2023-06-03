@@ -1,0 +1,255 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <title>50amigos</title>
+</head>
+<body>
+    <div class="inicio">
+        <div class="sombra">
+            <div class="barra">
+                <div class="logo">
+                    <a href="index.html">50<span class="logo-especial">Amigos</span></a>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'logout' %}'">SALIR</button>
+                {% else %}
+                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'login' %}'">INGRESAR</button>
+                {% endif %}
+                <div class="categorias">
+                    <a class="categoria" href="#entradas_id">Entradas</a>
+                    <a class="categoria" href="#platos_principales_id">Platos principales</a>
+                    <a class="categoria" href="#bebidas_id">Bebidas</a>
+                    <a class="categoria" href="#postres_id">Postres</a>
+                    <a class="categoria" href="#helados_id">Helados</a>
+                </div>
+            </div>
+    <form method="GET" action="{% url 'ProyectoApp:index' %}"> {% csrf_token %}
+    <p><p> 
+    <br><br><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <label for="txt1" id="l1">Mesa:</label>
+    <input type="text" id="txt1" name="name" required minlength="4" maxlength="25" size="7">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <label for="txt2" id="l2">Número de Mesa:</label>
+    <input type="text" id="txt2" name="name" required minlength="4" maxlength="25" size="7">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <label for="txt3" id="l3">Contraseña:</label>
+    <input type="text" id="txt3" name="name" required minlength="4" maxlength="25" size="7">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <label for="txt4" id="l4">Ubicación:</label>
+    <input type="text" id="txt4" name="name" required minlength="4" maxlength="25" size="7">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <a type="button" class="btn btn-warning" id="btn1" href="{% url 'ProyectoApp:index' %}" >REGISTRAR</a>
+    <button type="submit" class="botonind">Iniciar Sesión</button>
+    <p class="outp" id="out1"></p>
+<!--     <script>
+        const txt1 = document.getElementById('txt1');const txt2 = document.getElementById('txt2');
+        const txt3 = document.getElementById('txt3');const txt4 = document.getElementById('txt4');const out1 = document.getElementById('out1');
+        function printRegistro()
+        {
+            out1.innerHTML += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Mesa:"; out1.innerHTML += txt1.value;
+            out1.innerHTML += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp No. Mesa:"; out1.innerHTML += txt2.value;
+            out1.innerHTML += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Contraseña:"; out1.innerHTML += txt3.value;
+            out1.innerHTML += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Ubicación:"; out1.innerHTML += txt4.value;
+            var y = document.getElementById("txt1");y.type = "hidden";
+            var x = document.getElementById("l1");x.hidden = "hidden";
+            var y = document.getElementById("txt2");y.type = "hidden";
+            var x = document.getElementById("l2");x.hidden = "hidden";
+            var y = document.getElementById("txt3");y.type = "hidden";
+            var x = document.getElementById("l3");x.hidden = "hidden";
+            var y = document.getElementById("txt4");y.type = "hidden";
+            var x = document.getElementById("l4");x.hidden = "hidden";
+            var y = document.getElementById("btn1");y.type = "hidden";
+        }
+        btn1.addEventListener('click',printRegistro);
+    </script> -->
+    </p></p>
+    </form>
+
+        </div>
+    </div>
+
+    <a href="{% url 'ProyectoApp:votacion' %}" id="boton-iniciar-votacion">Iniciar Votación</a>
+
+    <div class="mas-pedido">
+        <h2 id="titulo-mas-pedido">Menú</h2>
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="entradas_id">Nuestras entradas</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+                {% for entrada in entradas %}
+                <div class="col-6">
+                 <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                    <img src="{{entrada.imagen}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="titulo-platillo">{{entrada.nombre}}</h5>
+                      <p class="descripcion-platillo">{{entrada.descripcion}}</p>
+                      <p class="precio-platillo">${{entrada.precio}}</p>
+                      <a href="{% url 'Add' entrada.id %}" class="boton-agregar">Agregar al carrito</a>
+                  </div>
+                 </div>
+                </div>
+                {% endfor %}
+            </div>
+           </div>
+         </div>
+        </div>
+          <div class="col-4">{% include "carrito.html" %}</div>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="platos_principales_id">Nuestros Platos Principales</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for principal in principales %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{principal.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="titulo-platillo">{{principal.nombre}}</h5>
+                    <p class="descripcion-platillo">{{principal.descripcion}}</p>
+                    <p class="precio-platillo">${{principal.precio}}</p>
+                    <a href="{% url 'Add' principal.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="bebidas_id">Nuestras Bebidas</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for bebida in bebidas %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{bebida.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="titulo-platillo">{{bebida.nombre}}</h5>
+                    <p class="descripcion-platillo">{{bebida.descripcion}}</p>
+                    <p class="precio-platillo">${{bebida.precio}}</p>
+                    <a href="{% url 'Add' bebida.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="postres_id">Nuestros Postres</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for postre in postres %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{postre.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="titulo-platillo">{{postre.nombre}}</h5>
+                    <p class="descripcion-platillo">{{postre.descripcion}}</p>
+                    <p class="precio-platillo">${{postre.precio}}</p>
+                    <a href="{% url 'Add' postre.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="helados_id">Nuestros Helados</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for helado in helados %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{helado.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="titulo-platillo">{{helado.nombre}}</h5>
+                    <p class="descripcion-platillo">{{helado.descripcion}}</p>
+                    <p class="precio-platillo">${{helado.precio}}</p>
+                    <a href="{% url 'Add' helado.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+
+      </div>
+
+    </div> <!-- aqui termina el div de la seccion -->
+
+  </div> <!-- aqui termina el div principal -->
+
+    </div>
+            
+
+    <footer class="footer">
+        <div class="barra">
+            <div class="logo-footer">
+                <a href="index.html">50<span class="logo-especial">Amigos</span></a>
+            </div>
+
+            <div class="categorias-footer">
+                <a class="categoria" href="#entradas_id">Entradas</a>
+                <a class="categoria" href="#platos_principales_id">Platos principales</a>
+                <a class="categoria" href="#bebidas_id">Bebidas</a>
+                <a class="categoria" href="#postres_id">Postres</a>
+                <a class="categoria" href="#helados_id">Helados</a>
+            </div>
+        </div>
+    </footer>
+<!-- <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
+</body>
+</html>

@@ -1,0 +1,389 @@
+body {
+    margin: 0;
+}
+
+.inicio {
+    background-image: url(../img/fondo_principal.jpg);
+    background-size: 100% 100%;
+    background-position: center center;
+    height: 50vh;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.botons{
+  color: #fff;
+  background-color: #00FF3C;
+  border-color: #00FF3C;
+}
+
+.tnon{
+  color: #fff;
+  background-color: #335BFF;
+  border-color: #335BFF;
+}
+
+.boton-agregar {
+  background-color: black;
+  color: #b7950b;
+  width: 150px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 20px 20px 100px;
+  padding: 8px;
+  border-radius: 20px;
+  border: solid 2px white;
+  text-decoration: none;
+}
+
+.tarjeta {
+  background-color: #b7950b;
+}
+
+.titulo-platillo {
+  text-align: center;
+  font-weight: bold;
+  font-family: Arial;
+  font-size: 30px;
+}
+
+.sombra {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.carrito {
+    display: flex;
+    justify-content: end;
+    margin: 20px 100px 0 0;
+}
+
+.barra {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0%;
+}
+
+.logo a,.logo-footer a {
+    text-decoration: none;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color:  #b7950b;
+}
+
+.logo,.logo-footer{
+    border: solid 2px white;
+    border-radius: 30px;
+    background-color: black;
+}
+
+.logo-helados {
+    border: solid 3px palevioletred;
+    border-radius: 30px;
+    background-color: black;
+}
+
+
+.logo-helados a{
+    text-decoration: none;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color:  palegreen;
+}
+
+
+.logo:hover {
+    border: solid 2px #b7950b;
+}
+
+.logo-footer:hover {
+    border: solid 2px #b7950b;
+}
+
+.logo-helados:hover {
+    border: solid 5px palevioletred;
+}
+
+.logo-especial {
+    color: white;
+}
+
+.logo-especial-helados {
+    color: paleturquoise;
+}
+
+
+.categorias {
+    margin-top: 20px;
+}
+
+.categoria {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.categoria:hover {
+    color: #b7950b;
+}
+
+#agregar {
+    background-color: black;
+    color: #00FF3C;
+    border: none;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+#titulo-mas-pedido {
+    margin-left: 680px;
+    font-size: 40px;
+}
+
+.texto-top-tres {
+    text-align: center;
+    margin-left: 230px;
+    font-size: 20px;
+    width: 480px;
+    border-radius: 20px;
+    padding: 10px 0 10px 0;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d7dbdd;
+}
+
+.cards-entradas {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    margin-left: 225px;
+    gap: 20px;
+}
+
+.entrada {
+    background-color: #b7950b;
+}
+
+.imagen-platillo {
+    width: 100%;
+    height: 400px;
+}
+
+.nombre-platillo {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.descripcion-platillo {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color:  #d7dbdd;
+}
+
+.precio-platillo {
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.footer {
+    background-color: black;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.logo-footer {
+    margin-top: 120px;
+}
+
+.categorias-footer {
+    margin-top: 150px;
+}
+
+.boton-ordenar {
+    background-color: black;
+    color: #b7950b;
+    width: 150px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 20px 20px 20px;
+    padding: 5px 0;
+    border-radius: 20px;
+    border: solid 2px white;
+}
+
+.boton-ordenar:hover {
+    cursor: pointer;
+    color: #d7dbdd;
+}
+
+.cantidad-ordenada {
+    width: 130px;
+    height: 32px;
+    background-color: black;
+    color: #b7950b;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: solid 2px white;
+}
+
+.indexi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/fondo_principal.jpg);
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+}
+
+.cuadro {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonind {
+    width: 100%;
+    height: 45px;
+    background-color: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+
+.votacion {
+    display: none;
+    margin: 20px 0 0 30px;
+}
+
+.header-helados {
+    background-image: url(../img/helados_fondo.jpg);
+    background-size: 100% 100%;
+    background-position: center center;
+    height: 70vh;
+    background-repeat: no-repeat;
+}
+
+.body-helados {
+    background-color: #b7950b;
+}
+
+#boton_terminar_votacion {
+    background-color: #b7950b;
+    border: solid 3px black;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 100px 0 0 700px;
+}
+
+#boton_terminar_votacion:hover {
+    color: white;
+    border: solid 3px white;
+}
+
+.label-votacion {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#nombre {
+    border-radius: 20px;
+    background-color: #b7950b;
+    color: black;
+    font-size: 20px;
+    border: solid 2px black;
+    font-weight: bold;
+}
+
+#sabores {
+    background-color: #b7950b;
+    border-radius: 20px;
+    border: solid 2px black;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#boton_votar {
+    background-color: black;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: solid 2px white;
+    color: #b7950b;
+    width: 200px;
+    margin-left: 20px;
+}
+
+#boton_votar:hover {
+    color: white;
+    border: solid 2px greenyellow;
+}
+
+#boton-iniciar-votacion {
+    text-decoration: none;
+    background-color: #b7950b;
+    color: black;
+    text-transform: uppercase;
+    border-radius: 20px;
+    font-weight: bold;
+    border: solid 2px black;
+    font-size: 20px;
+    margin: 20px 0 20px 600px;
+    padding: 10px;
+}
+
+#boton-iniciar-votacion:hover {
+    color: white;
+    border: solid 5px black;
+}
+
+.datos {
+    margin-top: 20px;
+}
+
+.datos p {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+}

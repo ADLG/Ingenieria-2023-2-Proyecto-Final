@@ -1,0 +1,220 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet"/>
+    <title>50amigos</title>
+</head>
+<body>
+    <div class="inicio">
+        <div class="sombra">
+            <div class="barra">
+                <div class="logo">
+                    <a href="{% url 'ProyectoApp:index' %}">50<span class="logo-especial">Amigos</span></a>
+                </div>
+                <div class="categorias">
+                    <a class="categoria" href="#entradas_id">Entradas</a>
+                    <a class="categoria" href="#platos_principales_id">Platos principales</a>
+                    <a class="categoria" href="#bebidas_id">Bebidas</a>
+                    <a class="categoria" href="#postres_id">Postres</a>
+                    <a class="categoria" href="#helados_id">Helados</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand">
+     <div style="color:#efb810;" class="form-group row">
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label class="col-sm-2 col-form-label col-form-label-lg">Mesa:  {{datosMesa.Mesa}}</label>
+      <label class="col-sm-2 col-form-label col-form-label-lg">Número de Mesa:  {{datosMesa.NoMesa}}</label>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label class="col-sm-2 col-form-label col-form-label-lg">Contraseña:  {{datosMesa.Contraseña}}</label>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label class="col-sm-2 col-form-label col-form-label-lg">Ubicación:  {{datosMesa.Ubicacion}}</label>
+     </div>
+    </a>
+    </nav>
+
+    <div class="mas-pedido">
+        <h2 id="titulo-mas-pedido">Menú</h2>
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+     <h3 class="texto-top-tres" id="entradas_id">Nuestras entradas</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+         <div class="col-12">
+          <div class="row">
+                {% for entrada in entradas %}
+                <div class="col-6">
+                 <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                    <img src="{{entrada.imagen}}" class="card-img-top" alt="..." style="height: 450px; width: 100%;">
+                  <div class="card-body" style="height: 350px;">
+                      <h5 class="titulo-platillo">{{entrada.nombre}}</h5>
+                      <p class="descripcion-platillo">{{entrada.descripcion}}</p>
+                      <p class="precio-platillo">${{entrada.precio}}</p>
+                      <a href="{% url 'Add' entrada.id %}" class="boton-agregar">Agregar al carrito</a>
+                  </div>
+                 </div>
+                </div>
+                {% endfor %}
+           </div>
+          </div>
+         </div>
+        </div>
+          <div class="col-4">{% include "carrito.html" %}</div>
+      </div>
+    </div>
+    </div>
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="platos_principales_id">Nuestros Platos Principales</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for principal in principales %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{principal.imagen}}" class="card-img-top" alt="..." style="height: 450px; width: 100%;">
+                <div class="card-body" style="height: 350px;">
+                    <h5 class="titulo-platillo">{{principal.nombre}}</h5>
+                    <p class="descripcion-platillo">{{principal.descripcion}}</p>
+                    <p class="precio-platillo">${{principal.precio}}</p>
+                    <a href="{% url 'Add' principal.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="bebidas_id">Nuestras Bebidas</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for bebida in bebidas %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{bebida.imagen}}" class="card-img-top" alt="..." style="height: 450px; width: 100%;">
+                <div class="card-body" style="height: 350px;">
+                    <h5 class="titulo-platillo">{{bebida.nombre}}</h5>
+                    <p class="descripcion-platillo">{{bebida.descripcion}}</p>
+                    <p class="precio-platillo">${{bebida.precio}}</p>
+                    <a href="{% url 'Add' bebida.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="postres_id">Nuestros Postres</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for postre in postres %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{postre.imagen}}" class="card-img-top" alt="..." style="height: 450px; width: 100%;">
+                <div class="card-body" style="height: 350px;">
+                    <h5 class="titulo-platillo">{{postre.nombre}}</h5>
+                    <p class="descripcion-platillo">{{postre.descripcion}}</p>
+                    <p class="precio-platillo">${{postre.precio}}</p>
+                    <a href="{% url 'Add' postre.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+
+    <div class="entradas-mas-pedidas">
+
+    <div class="container">
+      <h3 class="texto-top-tres" id="helados_id">Nuestros Helados</h3>
+      <div class="row">
+       <div class="col-8">
+        <div class="row" style="padding: 10px 0;">
+           <div class="col-12">
+            <div class="row">
+              {% for helado in helados %}
+              <div class="col-6">
+               <div class="tarjeta" style="height: auto; width: auto; margin: 5px 0px;">
+                  <img src="{{helado.imagen}}" class="card-img-top" alt="..." style="height: 450px; width: 100%;">
+                <div class="card-body" style="height: 350px;">
+                    <h5 class="titulo-platillo">{{helado.nombre}}</h5>
+                    <p class="descripcion-platillo">{{helado.descripcion}}</p>
+                    <p class="precio-platillo">${{helado.precio}}</p>
+                    <a href="{% url 'Add' helado.id %}" class="boton-agregar">Agregar al carrito</a>
+                </div>
+               </div>
+              </div>
+              {% endfor %}
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div> <!-- aqui termina el div de la seccion -->
+  </div> <!-- aqui termina el div principal -->
+
+    </div>
+            
+
+    <footer class="footer">
+        <div class="barra">
+            <div class="logo-footer">
+                <a href="{% url 'ProyectoApp:index' %}">50<span class="logo-especial">Amigos</span></a>
+            </div>
+
+            <div class="categorias-footer">
+                <a class="categoria" href="#entradas_id">Entradas</a>
+                <a class="categoria" href="#platos_principales_id">Platos principales</a>
+                <a class="categoria" href="#bebidas_id">Bebidas</a>
+                <a class="categoria" href="#postres_id">Postres</a>
+                <a class="categoria" href="#helados_id">Helados</a>
+            </div>
+        </div>
+    </footer>
+<!-- <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
+</body>
+</html>

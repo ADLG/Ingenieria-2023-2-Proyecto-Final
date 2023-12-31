@@ -12,7 +12,7 @@ Tello: https://trello.com/b/xVPD5ouL/soluciones-integrales
 Github: https://github.com/ADLG/Ingenieria-2023-2-Proyecto-Final
 
 Equipo Soluciones Integrales:
-- Lázaro Pérez David Jonathan - No. 316059710 
-- Licona Gómez Aldo Daniel - No. 316263863
-- Marín Parra José Guadalupe de Jesús - No. 316264176
-- Mixtli Arturo Vergara Navarro - No. 421121748
+- ADLG
+- DJLP
+- JGJMP
+- MAVN
